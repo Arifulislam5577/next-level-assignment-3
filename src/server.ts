@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import app from './app'
 import config from './config'
+import AppError from './global/AppError'
 
 async function startServer() {
   try {
@@ -12,8 +13,11 @@ async function startServer() {
       }
     })
   } catch (error) {
-    console.log(error)
-    throw new Error('Internal Server Error')
+    if (error instanceof AppError) {
+      throw new AppError(error.message, 400)
+    } else {
+      throw new Error('Internal Server Error')
+    }
   }
 }
 

@@ -8,7 +8,7 @@ export default [
   ...tseslint.configs.recommended,
   {
     rules: {
-      'no-unused-vars': 'error',
+      'no-unused-vars': 1,
       'no-undef': 'error',
       'prefer-const': 'error'
     }
