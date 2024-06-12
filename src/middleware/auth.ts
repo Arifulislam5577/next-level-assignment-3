@@ -7,10 +7,10 @@ import catchAsync from '../utils/catchAsync'
 
 export const auth = (userRole: 'user' | 'admin') => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    let token = req.headers.authorization
+    const token = req.headers.authorization
 
     if (!token) {
-      throw new AppError('Unauthorized user', 401)
+      throw new AppError('You have no access to this route', 400)
     }
 
     const decoded = jwt.verify(token.split(' ')[1], config.JWT_SECRET_KEY!) as JwtPayload
@@ -23,7 +23,7 @@ export const auth = (userRole: 'user' | 'admin') => {
     }
 
     if (user.role !== userRole) {
-      throw new AppError('Unauthorized user', 401)
+      throw new AppError('You have no access to this route', 400)
     }
 
     req.user = decoded

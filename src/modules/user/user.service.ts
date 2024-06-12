@@ -1,4 +1,3 @@
-import AppError from '../../global/AppError'
 import { generateJwtToken } from '../../utils/generateJwtToken'
 import { TUser, TUserLogin, TUserLoginResponse, TUserServiceResponse } from './user.interface'
 import User from './user.model'
@@ -24,12 +23,8 @@ export const createNewUser = async (userData: TUser): Promise<TUserServiceRespon
         data: user
       }
     }
-  } catch (error) {
-    if (error instanceof AppError) {
-      throw new AppError(error.message, 400)
-    } else {
-      throw new Error('An unknown error occurred')
-    }
+  } catch (error: any) {
+    throw new Error(error)
   }
 }
 
@@ -54,11 +49,7 @@ export const loginUserService = async ({ email, password }: TUserLogin): Promise
         data: null
       }
     }
-  } catch (error) {
-    if (error instanceof AppError) {
-      throw new AppError(error.message, 400)
-    } else {
-      throw new Error('An unknown error occurred')
-    }
+  } catch (error:any) {
+    throw new Error(error)
   }
 }

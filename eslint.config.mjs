@@ -10,7 +10,8 @@ export default [
     rules: {
       'no-unused-vars': 1,
       'no-undef': 'error',
-      'prefer-const': 'error'
+      'prefer-const': 'error',
+      '@typescript-eslint/no-explicit-any': 1
     }
   }
 ]
