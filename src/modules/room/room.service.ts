@@ -3,7 +3,9 @@ import Room from './room.model'
 
 const createRoomService = async (roomData: TRoom): Promise<TRoomResponse> => {
   try {
-    const isRoomExists = await Room.findOne({ roomNo: roomData.roomNo, floorNo: roomData.floorNo, name: roomData.name })
+    const isRoomExists = await Room.findOne({
+      $and: [{ roomNo: roomData.roomNo }, { floorNo: roomData.floorNo }]
+    })
 
     if (isRoomExists) {
       return {
