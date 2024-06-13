@@ -1,7 +1,7 @@
-import { TRoom, TRoomResponse } from './room.interface'
+import { IRoom, IRoomResponse } from './room.interface'
 import Room from './room.model'
 
-const createRoomService = async (roomData: TRoom): Promise<TRoomResponse> => {
+const createRoomService = async (roomData: IRoom): Promise<IRoomResponse> => {
   try {
     const isRoomExists = await Room.findOne({
       $and: [{ roomNo: roomData.roomNo }, { floorNo: roomData.floorNo }]
@@ -27,7 +27,7 @@ const createRoomService = async (roomData: TRoom): Promise<TRoomResponse> => {
   }
 }
 
-const updateRoomService = async (roomId: string, roomData: TRoom): Promise<TRoomResponse> => {
+const updateRoomService = async (roomId: string, roomData: IRoom): Promise<IRoomResponse> => {
   try {
     const room = await Room.findByIdAndUpdate(roomId, roomData, { new: true })
 
@@ -50,7 +50,7 @@ const updateRoomService = async (roomId: string, roomData: TRoom): Promise<TRoom
   }
 }
 
-const deleteRoomService = async (roomId: string): Promise<TRoomResponse> => {
+const deleteRoomService = async (roomId: string): Promise<IRoomResponse> => {
   try {
     const room = await Room.findByIdAndUpdate(roomId, { isDeleted: true }, { new: true })
     if (!room) {
@@ -72,7 +72,7 @@ const deleteRoomService = async (roomId: string): Promise<TRoomResponse> => {
   }
 }
 
-const getAllRoomService = async (): Promise<TRoomResponse> => {
+const getAllRoomService = async (): Promise<IRoomResponse> => {
   const rooms = await Room.find()
 
   if (rooms.length <= 0) {

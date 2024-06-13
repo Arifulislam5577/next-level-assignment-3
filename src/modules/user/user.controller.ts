@@ -1,21 +1,20 @@
 import { Request, Response } from 'express'
 import catchAsync from '../../utils/catchAsync'
-import { TUserServiceResponse } from './user.interface'
 import { createNewUser, loginUserService } from './user.service'
 
 // METHOD : POST
 // ROUTE : /api/auth/signup
 const signup = catchAsync(async (req: Request, res: Response) => {
-  const response: TUserServiceResponse = await createNewUser(req.body)
-  res.status(response.statusCode).json(response)
+  const data = await createNewUser(req.body)
+  res.status(data.statusCode).json(data)
 })
 
 // METHOD : POST
 // ROUTE : /api/auth/login
 
 const login = catchAsync(async (req: Request, res: Response) => {
-  const response = await loginUserService(req.body)
-  res.status(res.statusCode).json(response)
+  const data = await loginUserService(req.body)
+  res.status(data.statusCode).json(data)
 })
 
 export const authControllers = { signup, login }

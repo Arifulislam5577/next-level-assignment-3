@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
-import { TRoom } from './room.interface'
+import { IRoom } from './room.interface'
 
-const RoomSchema = new Schema<TRoom>(
+const RoomSchema = new Schema<IRoom>(
   {
     name: { type: String, required: [true, 'Room Name is required'] },
     roomNo: { type: Number, required: [true, 'Room Number is required'] },
@@ -23,6 +23,6 @@ const RoomSchema = new Schema<TRoom>(
   }
 )
 
-const Room = mongoose.model<TRoom>('Room', RoomSchema)
+const Room = mongoose.model<IRoom>('Room', RoomSchema)
 
 export default Room

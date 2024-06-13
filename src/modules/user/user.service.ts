@@ -1,8 +1,8 @@
 import { generateJwtToken } from '../../utils/generateJwtToken'
-import { TUser, TUserLogin, TUserLoginResponse, TUserServiceResponse } from './user.interface'
+import { IUser, IUserLogin, IUserLoginResponse, IUserServiceResponse } from './user.interface'
 import User from './user.model'
 
-export const createNewUser = async (userData: TUser): Promise<TUserServiceResponse> => {
+export const createNewUser = async (userData: IUser): Promise<IUserServiceResponse> => {
   try {
     const isUserExists = await User.findOne({ email: userData.email })
 
@@ -10,8 +10,7 @@ export const createNewUser = async (userData: TUser): Promise<TUserServiceRespon
       return {
         success: false,
         statusCode: 400,
-        message: 'User already exists',
-        data: null
+        message: 'User already exists'
       }
     } else {
       const user = await User.create({ ...userData })
@@ -28,7 +27,7 @@ export const createNewUser = async (userData: TUser): Promise<TUserServiceRespon
   }
 }
 
-export const loginUserService = async ({ email, password }: TUserLogin): Promise<TUserLoginResponse> => {
+export const loginUserService = async ({ email, password }: IUserLogin): Promise<IUserLoginResponse> => {
   try {
     const user = await User.findOne({ email }).select('+password')
 
@@ -45,11 +44,10 @@ export const loginUserService = async ({ email, password }: TUserLogin): Promise
       return {
         success: false,
         statusCode: 400,
-        message: 'Invalid email or password',
-        data: null
+        message: 'Invalid email or password'
       }
     }
-  } catch (error:any) {
+  } catch (error: any) {
     throw new Error(error)
   }
 }

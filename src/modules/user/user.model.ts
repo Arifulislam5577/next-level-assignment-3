@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs'
 import mongoose, { Schema } from 'mongoose'
-import { TUser, TUserModel } from './user.interface'
+import { IUser, IUserModel } from './user.interface'
 
-const UserSchema = new Schema<TUser, TUserModel>(
+const UserSchema = new Schema<IUser, IUserModel>(
   {
     name: { type: String, required: [true, 'Name is required'] },
     email: { type: String, unique: true, required: [true, 'Email is required'] },
@@ -35,6 +35,6 @@ UserSchema.statics.passwordMatch = async function (password: string, hashedPassw
   return await bcrypt.compare(password, hashedPassword)
 }
 
-const User = mongoose.model<TUser, TUserModel>('User', UserSchema)
+const User = mongoose.model<IUser, IUserModel>('User', UserSchema)
 
 export default User

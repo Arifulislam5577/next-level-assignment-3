@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
-import { TSlot } from './slot.interface'
+import { ISlot } from './slot.interface'
 
-const SlotSchema = new Schema<TSlot>(
+const SlotSchema = new Schema<ISlot>(
   {
     room: { type: Schema.Types.ObjectId, required: [true, 'Room Id is required'], ref: 'Room' },
     date: { type: String, required: [true, 'Date is required'] },
@@ -24,6 +24,6 @@ SlotSchema.pre('save', async function (next) {
   next()
 })
 
-const Slot = mongoose.model<TSlot>('Slot', SlotSchema)
+const Slot = mongoose.model<ISlot>('Slot', SlotSchema)
 
 export default Slot

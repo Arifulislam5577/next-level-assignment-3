@@ -1,6 +1,6 @@
 import { Model } from 'mongoose'
 
-export interface TUser {
+export interface IUser {
   name: string
   email: string
   password: string
@@ -9,26 +9,26 @@ export interface TUser {
   role: 'user' | 'admin'
 }
 
-export interface TUserServiceResponse {
+export interface IUserServiceResponse {
   success: boolean
   statusCode: number
   message: string
-  data: Omit<TUser, 'password'> | null
+  data?: Omit<IUser, 'password'> | null
 }
 
-export type TUserLogin = {
+export type IUserLogin = {
   email: string
   password: string
 }
 
-export interface TUserLoginResponse {
+export interface IUserLoginResponse {
   success: boolean
   statusCode: number
   message: string
   token?: string
-  data: TUser | null
+  data?: IUser | null
 }
 
-export interface TUserModel extends Model<TUser> {
+export interface IUserModel extends Model<IUser> {
   passwordMatch(password: string, hashedPassword: string): Promise<boolean>
 }

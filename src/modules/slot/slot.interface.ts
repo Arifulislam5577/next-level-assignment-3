@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-export interface TSlot {
+export interface ISlot {
   room: mongoose.Schema.Types.ObjectId
   date: string
   startTime: string
@@ -8,9 +8,9 @@ export interface TSlot {
   isBooked: boolean
 }
 
-export interface TSlotResponse {
+export interface ISlotResponse {
   success: boolean
   statusCode: number
   message: string
-  data?: TSlot[]
+  data?: ISlot[]
 }

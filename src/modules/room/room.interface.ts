@@ -1,4 +1,4 @@
-export interface TRoom {
+export interface IRoom {
   name: string
   roomNo: number
   floorNo: number
@@ -8,9 +8,9 @@ export interface TRoom {
   isDeleted: boolean
 }
 
-export interface TRoomResponse {
+export interface IRoomResponse {
   success: boolean
   statusCode: number
   message: string
-  data?: TRoom | [] | TRoom[]
+  data?: IRoom | [] | IRoom[]
 }

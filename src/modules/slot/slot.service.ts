@@ -1,5 +1,5 @@
 import Room from '../room/room.model'
-import { TSlot, TSlotResponse } from './slot.interface'
+import { ISlot, ISlotResponse } from './slot.interface'
 import Slot from './slot.model'
 
 const timeToMinutes = (time: string): number => {
@@ -11,7 +11,8 @@ const minutesToTime = (minutes: number): string => {
   const mins = minutes % 60
   return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`
 }
-const createSlotService = async (slotData: TSlot): Promise<TSlotResponse> => {
+
+const createSlotService = async (slotData: ISlot): Promise<ISlotResponse> => {
   try {
     const { room, date, startTime, endTime } = slotData
 
@@ -79,7 +80,8 @@ const createSlotService = async (slotData: TSlot): Promise<TSlotResponse> => {
     throw new Error(error)
   }
 }
-const getAvailableSlotsService = async (date: string, roomId: string): Promise<TSlotResponse> => {
+
+const getAvailableSlotsService = async (date: string, roomId: string): Promise<ISlotResponse> => {
   try {
     let query = {}
 
@@ -95,7 +97,8 @@ const getAvailableSlotsService = async (date: string, roomId: string): Promise<T
       return {
         success: false,
         statusCode: 404,
-        message: 'No Slots Found'
+        message: 'No Data Found',
+        data: []
       }
     } else {
       return {
