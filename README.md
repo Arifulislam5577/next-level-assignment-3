@@ -4,6 +4,8 @@
 
 # API Documentation
 
+### Base URL : `https://nl-assignment-three.vercel.app`
+
 ## Authentication
 
 #### POST - Create New User

@@ -19,7 +19,7 @@ export const auth = (userRole: 'user' | 'admin') => {
     const isUserExists = await User.findById(user.id)
 
     if (!isUserExists) {
-      throw new AppError('No user found', 404)
+      throw new AppError('You have no access to this route', 400)
     }
 
     if (user.role !== userRole) {

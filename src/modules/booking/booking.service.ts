@@ -1,5 +1,6 @@
 import Room from '../room/room.model'
 import Slot from '../slot/slot.model'
+import User from '../user/user.model'
 import { IBooking, IBookingResponse } from './booking.interface'
 import Booking from './booking.model'
 
@@ -17,13 +18,31 @@ const createBookingService = async (bookingData: IBooking): Promise<IBookingResp
       }
     }
 
-    const bookedSlots = existingSlots.filter((slot) => slot.isBooked)
+    const invalidRoomSlots = existingSlots.some((slot) => slot.room !== room)
 
+    if (invalidRoomSlots) {
+      return {
+        success: false,
+        statusCode: 400,
+        message: 'One or more slots do not belong to the specified room'
+      }
+    }
+
+    const bookedSlots = existingSlots.filter((slot) => slot.isBooked)
     if (bookedSlots.length > 0) {
       return {
         success: false,
         statusCode: 400,
         message: 'One or more slots are already booked'
+      }
+    }
+
+    const bookingUser = await User.findById(user)
+    if (!bookingUser) {
+      return {
+        success: false,
+        statusCode: 400,
+        message: 'User does not exist'
       }
     }
 
@@ -37,12 +56,10 @@ const createBookingService = async (bookingData: IBooking): Promise<IBookingResp
     }
 
     const totalAmount = roomDetails.pricePerSlot * slots.length
-
     const newBooking = new Booking({ date, slots, room, user, totalAmount })
     await newBooking.save()
 
     await Slot.updateMany({ _id: { $in: bookingData.slots } }, { isBooked: true })
-
     const bookings = await newBooking.populate('room user slots')
 
     return {
