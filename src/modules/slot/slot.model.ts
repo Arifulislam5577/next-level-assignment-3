@@ -14,16 +14,6 @@ const SlotSchema = new Schema<ISlot>(
   }
 )
 
-SlotSchema.pre('save', async function (next) {
-  const startTime = this.startTime
-  const endTime = this.endTime
-
-  if (+startTime >= +endTime) {
-    next(new Error('Start time should be less than end time'))
-  }
-  next()
-})
-
 const Slot = mongoose.model<ISlot>('Slot', SlotSchema)
 
 export default Slot

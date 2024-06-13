@@ -47,8 +47,11 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     status = 400
     message = 'Invalid Mongo ID'
     errorMessages = handleCastError(err)
+  } else if (err.code === 11000) {
+    status = 400
+    message = err.message
+    errorMessages = [{ path: '', message: err.message }]
   }
-
   return res.status(status).json({
     success: false,
     message,
