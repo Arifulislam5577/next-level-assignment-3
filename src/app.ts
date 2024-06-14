@@ -1,5 +1,5 @@
 import express, { Application, Request, Response } from 'express'
-import globalErrorHandler from './global/globalError'
+import globalErrorHandler from './middleware/globalErrorHandler'
 import bookingRouter from './modules/booking/booking.route'
 import roomRouter from './modules/room/room.route'
 import slotRouter from './modules/slot/slot.route'

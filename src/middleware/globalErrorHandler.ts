@@ -1,7 +1,7 @@
 import { ErrorRequestHandler } from 'express'
 import mongoose from 'mongoose'
 import { ZodError, ZodIssue } from 'zod'
-import AppError from './AppError'
+import AppError from '../global/AppError'
 
 type ErrorDetails = {
   path: string | number
@@ -36,19 +36,19 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     status = 400
     message = 'Validation Error'
     errorMessages = handleZodError(err)
-  } else if (err instanceof Error) {
-    message = err.message
-    errorMessages = [{ path: '', message: err.message }]
   } else if (err instanceof AppError) {
     status = err.statusCode
     message = err.message
     errorMessages = [{ path: '', message: err.message }]
   } else if (err instanceof mongoose.Error.CastError) {
     status = 400
-    message = 'Invalid Mongo ID'
+    message = 'Invalid MongoDB ID'
     errorMessages = handleCastError(err)
   } else if (err.code === 11000) {
     status = 400
+    message = err.message
+    errorMessages = [{ path: '', message: err.message }]
+  } else if (err instanceof Error) {
     message = err.message
     errorMessages = [{ path: '', message: err.message }]
   }

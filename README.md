@@ -67,11 +67,6 @@
 
 - **URL**: `/api/rooms/:id`
 - **Method**: `GET`
-- **Access**: `Admin`
-- **Headers**:
-  ```text
-  Authorization: Bearer <Admin Token>
-  ```
 - **URL Like**:
   ```text
   /api/rooms/66696895f953a56fe37fc9f3
@@ -81,11 +76,6 @@
 
 - **URL**: `/api/rooms`
 - **Method**: `GET`
-- **Access**: `Admin`
-- **Headers**:
-  ```text
-  Authorization: Bearer <admin Token>
-  ```
 
 #### PUT - Update Room Info
 
