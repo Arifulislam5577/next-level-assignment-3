@@ -32,7 +32,7 @@ export const loginUserService = async ({ email, password }: IUserLogin): Promise
       success: true,
       statusCode: 200,
       message: 'User logged in successfully',
-      token: `Bearer ${token}`,
+      token: token,
       data: user
     }
   } else {
