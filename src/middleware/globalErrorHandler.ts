@@ -30,32 +30,33 @@ const handleZodError = (error: ZodError) => {
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   let status: number = err.statusCode || 500
   let message: string = err.message || 'Something went wrong'
-  let errorMessages: ErrorDetails[] = []
+  let errorSource: ErrorDetails[] = []
 
   if (err instanceof ZodError) {
+    const zodError = handleZodError(err)
     status = 400
-    message = 'Validation Error'
-    errorMessages = handleZodError(err)
+    message = zodError[0].message
+    errorSource = handleZodError(err)
   } else if (err instanceof AppError) {
     status = err.statusCode
     message = err.message
-    errorMessages = [{ path: '', message: err.message }]
+    errorSource = [{ path: '', message: err.message }]
   } else if (err instanceof mongoose.Error.CastError) {
     status = 400
-    message = 'Invalid MongoDB ID'
-    errorMessages = handleCastError(err)
+    message = err.message
+    errorSource = handleCastError(err)
   } else if (err.code === 11000) {
     status = 400
     message = err.message
-    errorMessages = [{ path: '', message: err.message }]
+    errorSource = [{ path: '', message: err.message }]
   } else if (err instanceof Error) {
     message = err.message
-    errorMessages = [{ path: '', message: err.message }]
+    errorSource = [{ path: '', message: err.message }]
   }
   return res.status(status).json({
     success: false,
     message,
-    errorMessages,
+    errorSource,
     stack: process.env.NODE_ENV === 'DEVELOPMENT' ? err.stack : null
   })
 }

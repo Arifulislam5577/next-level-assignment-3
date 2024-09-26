@@ -14,8 +14,7 @@ const createUserZodSchema = z.object({
     .string({ required_error: 'Phone Number is required' })
     .min(11, { message: 'Phone must be at least 11 characters' })
     .trim(),
-  address: z.string({ required_error: 'Quantity is required' }),
-  role: z.enum(['user', 'admin'], { required_error: 'Role is required' })
+  address: z.string({ required_error: 'Quantity is required' })
 })
 
 const loginUserZodSchema = z.object({
