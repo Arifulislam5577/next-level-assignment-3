@@ -19,7 +19,6 @@ const createSlotService = async (slotData: ISlot): Promise<ISlotResponse> => {
   const endMinutes = timeToMinutes(endTime)
 
   const totalDuration = endMinutes - startMinutes
-
   const numberOfSlots = totalDuration / slotDuration
 
   if (totalDuration <= 0) {
@@ -95,4 +94,38 @@ const getAvailableSlotsService = async (date: string, roomId: string): Promise<I
   }
 }
 
-export { createSlotService, getAvailableSlotsService }
+const deleteSlotService = async (slotId: string): Promise<ISlotResponse> => {
+  const slot = await Slot.findByIdAndDelete(slotId)
+  if (!slot) {
+    return {
+      success: false,
+      statusCode: 404,
+      message: 'Slot not found'
+    }
+  } else {
+    return {
+      success: true,
+      statusCode: 200,
+      message: 'Slot deleted successfully'
+    }
+  }
+}
+
+const updateSlotService = async (slotId: string, slotData: ISlot): Promise<ISlotResponse> => {
+  const slot = await Slot.findByIdAndUpdate(slotId, slotData, { new: true })
+  if (!slot) {
+    return {
+      success: false,
+      statusCode: 404,
+      message: 'Slot not found'
+    }
+  } else {
+    return {
+      success: true,
+      statusCode: 200,
+      message: 'Slot updated successfully'
+    }
+  }
+}
+
+export { createSlotService, deleteSlotService, getAvailableSlotsService, updateSlotService }

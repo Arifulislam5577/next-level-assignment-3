@@ -26,7 +26,15 @@ const createRoomService = async (roomData: IRoom): Promise<IRoomResponse> => {
 }
 
 const updateRoomService = async (roomId: string, roomData: IRoom): Promise<IRoomResponse> => {
-  const room = await Room.findByIdAndUpdate(roomId, roomData, { new: true })
+  const cleanedData = Object.fromEntries(
+    Object.entries(roomData).filter(([_, value]) => value !== undefined && value !== null && value !== '')
+  )
+
+  if (cleanedData.image) {
+    cleanedData.image = await uploadImage(cleanedData.image)
+  }
+
+  const room = await Room.findByIdAndUpdate(roomId, cleanedData, { new: true })
 
   if (!room) {
     return {
