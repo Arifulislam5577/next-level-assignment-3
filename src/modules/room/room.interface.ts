@@ -1,5 +1,6 @@
 export interface IRoom {
   name: string
+  image: string
   roomNo: number
   floorNo: number
   capacity: number

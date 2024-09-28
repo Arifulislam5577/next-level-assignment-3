@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 const createRoomZodSchema = z.object({
   name: z.string({ required_error: 'Name is required' }),
+  image: z.string({ required_error: 'Image is required' }),
   roomNo: z
     .number({ required_error: 'Room number is required' })
     .int({ message: 'Room number must be an integer' })

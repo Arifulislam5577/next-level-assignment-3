@@ -1,3 +1,4 @@
+import { uploadImage } from '../../utils/uploadImage'
 import Slot from '../slot/slot.model'
 import { IRoom, IRoomResponse } from './room.interface'
 import Room from './room.model'
@@ -13,14 +14,14 @@ const createRoomService = async (roomData: IRoom): Promise<IRoomResponse> => {
       statusCode: 400,
       message: 'Room already exists'
     }
-  } else {
-    const room = await Room.create({ ...roomData })
-    return {
-      success: true,
-      statusCode: 201,
-      message: 'Room added successfully',
-      data: room
-    }
+  }
+  const productImage = await uploadImage(roomData.image)
+  const room = await Room.create({ ...roomData, image: productImage })
+  return {
+    success: true,
+    statusCode: 201,
+    message: 'Room added successfully',
+    data: room
   }
 }
 
@@ -64,7 +65,7 @@ const deleteRoomService = async (roomId: string): Promise<IRoomResponse> => {
 }
 
 const getAllRoomService = async (): Promise<IRoomResponse> => {
-  const rooms = await Room.find()
+  const rooms = await Room.find({ isDeleted: false }).sort({ createdAt: -1 })
 
   if (rooms.length <= 0) {
     return {

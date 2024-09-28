@@ -4,6 +4,7 @@ import { IRoom } from './room.interface'
 const RoomSchema = new Schema<IRoom>(
   {
     name: { type: String, required: [true, 'Room Name is required'] },
+    image: { type: String, required: [true, 'Room Image is required'] },
     roomNo: { type: Number, required: [true, 'Room Number is required'] },
     floorNo: { type: Number, required: [true, 'Floor Number is required'] },
     capacity: { type: Number, required: [true, 'Capacity is required'] },
