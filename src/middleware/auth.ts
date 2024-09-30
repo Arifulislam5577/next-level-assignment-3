@@ -5,7 +5,7 @@ import AppError from '../global/AppError'
 import User from '../modules/user/user.model'
 import catchAsync from '../utils/catchAsync'
 
-export const auth = (userRole: 'user' | 'admin') => {
+export const auth = (userRole?: 'user' | 'admin') => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization
 
@@ -22,7 +22,11 @@ export const auth = (userRole: 'user' | 'admin') => {
       throw new AppError('You have no access to this route', 400)
     }
 
-    if (user.role !== userRole) {
+    if (user.role === 'admin') {
+      return next()
+    }
+
+    if (userRole && user.role !== userRole) {
       throw new AppError('You have no access to this route', 400)
     }
 

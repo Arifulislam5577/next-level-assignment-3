@@ -128,4 +128,31 @@ const updateSlotService = async (slotId: string, slotData: ISlot): Promise<ISlot
   }
 }
 
-export { createSlotService, deleteSlotService, getAvailableSlotsService, updateSlotService }
+const getSlotsByRoomIdService = async (
+  roomId: string,
+  queryValue: { date: string; startTime: string; endTime: string }
+): Promise<ISlotResponse> => {
+  const { date, startTime, endTime } = queryValue
+  let query = {}
+
+  if (!date && !startTime && !endTime) {
+    query = { room: roomId }
+  }
+
+  if (date && startTime && endTime) {
+    query = {
+      $and: [{ room: roomId }, { date }, { startTime }, { endTime }]
+    }
+  }
+
+  const slots = await Slot.find(query).populate('room', ['name', 'pricePerSlot'])
+
+  return {
+    success: true,
+    statusCode: 200,
+    message: 'Slots retrieved successfully',
+    data: slots
+  }
+}
+
+export { createSlotService, deleteSlotService, getAvailableSlotsService, getSlotsByRoomIdService, updateSlotService }

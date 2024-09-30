@@ -8,7 +8,7 @@ import { IBooking } from './booking.interface'
 const BookingSchema = new Schema<IBooking>(
   {
     date: { type: String, required: [true, 'Date is required'] },
-    slots: [{ type: Schema.Types.ObjectId, required: [true, 'Slots are required'], ref: 'Slot' }],
+    slot: { type: Schema.Types.ObjectId, required: [true, 'Slots are required'], ref: 'Slot', unique: true },
     room: { type: Schema.Types.ObjectId, required: [true, 'Room is required'], ref: 'Room' },
     user: { type: Schema.Types.ObjectId, required: [true, 'User is required'], ref: 'User' },
     totalAmount: { type: Number },
@@ -41,23 +41,18 @@ BookingSchema.pre('save', async function (next) {
 })
 
 BookingSchema.pre('save', async function (next) {
-  const slotInTheRoom = await Slot.find({ $and: [{ _id: { $in: this.slots } }, { room: this.room }] })
-  if (slotInTheRoom.length <= 0) {
-    throw new AppError('Room id does not match with any slot', 400)
+  const slotInTheRoom = await Slot.findOne({ _id: this.slot, room: this.room })
+  if (!slotInTheRoom) {
+    throw new AppError('Room id does not match with the slot', 400)
   }
-
   next()
 })
 
 BookingSchema.pre('save', async function (next) {
-  const isSlotBooked = await Slot.find({
-    $and: [{ _id: { $in: this.slots } }, { room: this.room }, { isBooked: false }]
-  })
-
-  if (isSlotBooked.length !== this.slots.length) {
-    throw new AppError('One or more slots are already booked or not exist', 400)
+  const isSlotBooked = await Slot.findOne({ _id: this.slot, room: this.room, isBooked: false })
+  if (!isSlotBooked) {
+    throw new AppError('The slot is already booked or does not exist', 400)
   }
-
   next()
 })
 

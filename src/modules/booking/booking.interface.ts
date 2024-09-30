@@ -2,7 +2,7 @@ import { Schema } from 'mongoose'
 
 export interface IBooking {
   date: string
-  slots: Schema.Types.ObjectId[]
+  slot: Schema.Types.ObjectId
   room: Schema.Types.ObjectId
   user: Schema.Types.ObjectId
   totalAmount: number
@@ -15,4 +15,11 @@ export interface IBookingResponse {
   statusCode: number
   message: string
   data?: IBooking | IBooking[] | []
+}
+
+export interface IPaymentResponse {
+  success: boolean
+  statusCode: number
+  message: string
+  stripeUrl: string
 }

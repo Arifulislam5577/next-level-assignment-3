@@ -24,7 +24,6 @@ const createRoomService = async (roomData: IRoom): Promise<IRoomResponse> => {
     data: room
   }
 }
-
 const updateRoomService = async (roomId: string, roomData: IRoom): Promise<IRoomResponse> => {
   const cleanedData = Object.fromEntries(
     Object.entries(roomData).filter(([_, value]) => value !== undefined && value !== null && value !== '')
@@ -51,7 +50,6 @@ const updateRoomService = async (roomId: string, roomData: IRoom): Promise<IRoom
     }
   }
 }
-
 const deleteRoomService = async (roomId: string): Promise<IRoomResponse> => {
   const room = await Room.findByIdAndUpdate(roomId, { isDeleted: true }, { new: true })
   if (!room) {
@@ -71,7 +69,6 @@ const deleteRoomService = async (roomId: string): Promise<IRoomResponse> => {
     }
   }
 }
-
 const getAllRoomService = async (): Promise<IRoomResponse> => {
   const rooms = await Room.find({ isDeleted: false }).sort({ createdAt: -1 })
 

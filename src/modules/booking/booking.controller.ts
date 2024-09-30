@@ -5,6 +5,7 @@ import {
   deleteBookingService,
   getBookingService,
   getUserBookingService,
+  paymentService,
   updateBookingService
 } from './booking.service'
 
@@ -20,7 +21,8 @@ const getAllBooking = catchAsync(async (req: Request, res: Response) => {
 // METHOD : POST
 
 const createBooking = catchAsync(async (req: Request, res: Response) => {
-  const data = await createBookingService(req.body)
+  const { userId, slotId } = req.body
+  const data = await createBookingService({ userId, slotId })
   res.status(data.statusCode).json(data)
 })
 
@@ -48,5 +50,24 @@ const deleteBooking = catchAsync(async (req: Request, res: Response) => {
   const data = await deleteBookingService(req.params.id)
   res.status(data.statusCode).json(data)
 })
+// ROUTE : /api/bookings/payment
+// METHOD : POST
 
-export const bookingControllers = { createBooking, getAllBooking, userBooking, updateBooking, deleteBooking }
+const paymentBooking = catchAsync(async (req: Request, res: Response) => {
+  const { slotId, userId } = req.body
+  const infos = {
+    userId,
+    slotId
+  }
+  const data = await paymentService(infos)
+  res.status(data.statusCode).json(data)
+})
+
+export const bookingControllers = {
+  createBooking,
+  getAllBooking,
+  userBooking,
+  updateBooking,
+  deleteBooking,
+  paymentBooking
+}
