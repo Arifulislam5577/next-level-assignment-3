@@ -2,7 +2,7 @@ import { ISlot, ISlotResponse } from './slot.interface'
 import Slot from './slot.model'
 
 const timeToMinutes = (time: string): number => {
-  const [hours, minutes] = time.split(':').map(Number)
+  const [hours, minutes] = time.split('.').map(Number)
   return hours * 60 + minutes
 }
 const minutesToTime = (minutes: number): string => {

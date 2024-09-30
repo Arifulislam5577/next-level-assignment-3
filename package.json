@@ -9,7 +9,8 @@
     "prod": "node ./dist/server.js",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "format": "eslint src/**/*.ts --fix"
+    "format": "eslint src/**/*.ts --fix",
+    "deploy": "yarn build && vercel --prod"
   },
   "keywords": [],
   "author": "",

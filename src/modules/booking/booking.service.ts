@@ -61,7 +61,7 @@ const createBookingService = async ({
 }
 
 const getBookingService = async (): Promise<IBookingResponse> => {
-  const booking = await Booking.find().populate('room user slots')
+  const booking = await Booking.find().populate('room user slot')
   if (!booking) {
     return {
       success: false,

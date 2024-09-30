@@ -8,7 +8,7 @@ import authRouter from './modules/user/user.route'
 
 const app: Application = express()
 
-app.use(cors({ origin: ['http://localhost:5173'], credentials: true }))
+app.use(cors({ origin: ['http://localhost:5173', 'https://roomly-cyan.vercel.app'], credentials: true }))
 app.use(express.json({ limit: '5mb' }))
 app.get('/', (req: Request, res: Response) => {
   res.json('API working')
