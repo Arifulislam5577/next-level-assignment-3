@@ -13,5 +13,17 @@ export interface IRoomResponse {
   success: boolean
   statusCode: number
   message: string
-  data?: IRoom | [] | IRoom[]
+  data?: {
+    data: IRoom | [] | IRoom[]
+    meta?: {
+      page: number
+      limit: number
+      totalDocuments: number
+      totalPages: number
+      highestPrice: number
+      lowestPrice: number
+      highestCapacity: number
+      lowestCapacity: number
+    }
+  }
 }

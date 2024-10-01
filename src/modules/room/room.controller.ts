@@ -38,7 +38,7 @@ const getRoom = catchAsync(async (req: Request, res: Response) => {
 // METHOD : GET
 
 const getAllRoom = catchAsync(async (req: Request, res: Response) => {
-  const rooms = await getAllRoomService()
+  const rooms = await getAllRoomService(req.query)
   res.status(rooms.statusCode).json(rooms)
 })
 

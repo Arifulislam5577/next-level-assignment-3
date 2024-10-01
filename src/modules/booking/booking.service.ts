@@ -79,16 +79,8 @@ const getBookingService = async (): Promise<IBookingResponse> => {
 }
 
 const getUserBookingService = async (userId: string): Promise<IBookingResponse> => {
-  const booking = await Booking.find({ user: userId }).populate('slots room').select('-user')
+  const booking = await Booking.find({ user: userId }).populate('slot room user')
 
-  if (!booking) {
-    return {
-      success: false,
-      statusCode: 404,
-      message: 'No Data Found',
-      data: []
-    }
-  }
   return {
     success: true,
     statusCode: 200,
@@ -180,8 +172,8 @@ const paymentService = async ({ userId, slotId }: { userId: string; slotId: stri
       }
     ],
     mode: 'payment',
-    success_url: `http://localhost:5173/success?slot_id=${slot?._id}&user_id=${user?._id}`,
-    cancel_url: 'http://localhost:5173/cancel',
+    success_url: `${config.CLIENT_URL}/success?slot_id=${slot?._id}&user_id=${user?._id}`,
+    cancel_url: `${config.CLIENT_URL}/cancel`,
     customer: customer.id
   })
 

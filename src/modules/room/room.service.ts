@@ -1,3 +1,4 @@
+import QueryApi from '../../query/queryApi'
 import { uploadImage } from '../../utils/uploadImage'
 import Slot from '../slot/slot.model'
 import { IRoom, IRoomResponse } from './room.interface'
@@ -21,7 +22,9 @@ const createRoomService = async (roomData: IRoom): Promise<IRoomResponse> => {
     success: true,
     statusCode: 201,
     message: 'Room added successfully',
-    data: room
+    data: {
+      data: room
+    }
   }
 }
 const updateRoomService = async (roomId: string, roomData: IRoom): Promise<IRoomResponse> => {
@@ -46,7 +49,9 @@ const updateRoomService = async (roomId: string, roomData: IRoom): Promise<IRoom
       success: true,
       statusCode: 200,
       message: 'Room updated successfully',
-      data: room
+      data: {
+        data: room
+      }
     }
   }
 }
@@ -65,26 +70,25 @@ const deleteRoomService = async (roomId: string): Promise<IRoomResponse> => {
       success: true,
       statusCode: 200,
       message: 'Room deleted successfully',
-      data: room
+      data: {
+        data: room
+      }
     }
   }
 }
-const getAllRoomService = async (): Promise<IRoomResponse> => {
-  const rooms = await Room.find({ isDeleted: false }).sort({ createdAt: -1 })
+const getAllRoomService = async (query: Record<string, unknown>): Promise<IRoomResponse> => {
+  const roomQuery = new QueryApi(Room.find(), query).search(['name']).filter().sort().paginate().fields()
 
-  if (rooms.length <= 0) {
-    return {
-      success: false,
-      statusCode: 404,
-      message: 'No Data Found',
-      data: []
-    }
-  } else {
-    return {
-      success: true,
-      statusCode: 200,
-      message: 'Room retrieved successfully',
-      data: rooms
+  const productData = await roomQuery.query
+  const metadata = await roomQuery.countTotal()
+
+  return {
+    success: true,
+    statusCode: 200,
+    message: 'Room retrieved successfully',
+    data: {
+      data: productData,
+      meta: { ...metadata }
     }
   }
 }

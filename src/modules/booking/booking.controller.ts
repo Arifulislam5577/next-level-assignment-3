@@ -26,7 +26,7 @@ const createBooking = catchAsync(async (req: Request, res: Response) => {
   res.status(data.statusCode).json(data)
 })
 
-// ROUTE : /api/my-booking
+// ROUTE : /api/my-booking/:id
 // METHOD : GET
 
 const userBooking = catchAsync(async (req: Request, res: Response) => {
@@ -39,8 +39,9 @@ const userBooking = catchAsync(async (req: Request, res: Response) => {
 // METHOD : PUT
 
 const updateBooking = catchAsync(async (req: Request, res: Response) => {
-  const data = await updateBookingService(req.params.id, req.body)
-  res.status(data.statusCode).json(data)
+  const { data } = req.body
+  const response = await updateBookingService(req.params.id, data)
+  res.status(response.statusCode).json(response)
 })
 
 // ROUTE : /api/bookings/:id

@@ -1,0 +1,202 @@
+[
+  {
+    "name": "Silver Meeting Room",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 101,
+    "floorNo": 1,
+    "capacity": 6,
+    "pricePerSlot": 300,
+    "isDeleted": false,
+    "amenities": ["Whiteboard", "Air Conditioning", "Wi-Fi"]
+  },
+  {
+    "name": "Golden Conference Hall",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 102,
+    "floorNo": 1,
+    "capacity": 12,
+    "pricePerSlot": 600,
+    "isDeleted": false,
+    "amenities": ["Projector", "Wi-Fi", "Coffee Machine"]
+  },
+  {
+    "name": "Ocean View Suite",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 103,
+    "floorNo": 2,
+    "capacity": 8,
+    "pricePerSlot": 450,
+    "isDeleted": false,
+    "amenities": ["Whiteboard", "Wi-Fi", "TV Screen"]
+  },
+  {
+    "name": "Skyline Executive Lounge",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 104,
+    "floorNo": 2,
+    "capacity": 10,
+    "pricePerSlot": 500,
+    "isDeleted": false,
+    "amenities": ["Air Conditioning", "Wi-Fi", "Mini Bar"]
+  },
+  {
+    "name": "Mountain View Suite",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 105,
+    "floorNo": 3,
+    "capacity": 5,
+    "pricePerSlot": 350,
+    "isDeleted": false,
+    "amenities": ["Projector", "Wi-Fi", "Coffee Machine"]
+  },
+  {
+    "name": "Elite Board Room",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 106,
+    "floorNo": 3,
+    "capacity": 8,
+    "pricePerSlot": 400,
+    "isDeleted": false,
+    "amenities": ["Whiteboard", "Air Conditioning", "Wi-Fi"]
+  },
+  {
+    "name": "Crystal Conference Hall",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 107,
+    "floorNo": 4,
+    "capacity": 20,
+    "pricePerSlot": 1000,
+    "isDeleted": false,
+    "amenities": ["Projector", "Wi-Fi", "Coffee Machine"]
+  },
+  {
+    "name": "Royal Meeting Suite",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 108,
+    "floorNo": 4,
+    "capacity": 15,
+    "pricePerSlot": 750,
+    "isDeleted": false,
+    "amenities": ["Whiteboard", "Wi-Fi", "TV Screen"]
+  },
+  {
+    "name": "Sunset View Room",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 109,
+    "floorNo": 5,
+    "capacity": 10,
+    "pricePerSlot": 550,
+    "isDeleted": false,
+    "amenities": ["Wi-Fi", "Air Conditioning", "Mini Bar"]
+  },
+  {
+    "name": "Zen Garden Lounge",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 110,
+    "floorNo": 5,
+    "capacity": 4,
+    "pricePerSlot": 300,
+    "isDeleted": false,
+    "amenities": ["Whiteboard", "Wi-Fi", "Air Conditioning"]
+  },
+  {
+    "name": "Pearl Executive Room",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 111,
+    "floorNo": 6,
+    "capacity": 7,
+    "pricePerSlot": 375,
+    "isDeleted": false,
+    "amenities": ["Projector", "Coffee Machine", "Wi-Fi"]
+  },
+  {
+    "name": "Diamond Conference Room",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 112,
+    "floorNo": 6,
+    "capacity": 14,
+    "pricePerSlot": 900,
+    "isDeleted": false,
+    "amenities": ["Projector", "Wi-Fi", "Mini Bar"]
+  },
+  {
+    "name": "Serenity Business Suite",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 113,
+    "floorNo": 7,
+    "capacity": 6,
+    "pricePerSlot": 400,
+    "isDeleted": false,
+    "amenities": ["Whiteboard", "Wi-Fi", "Air Conditioning"]
+  },
+  {
+    "name": "Opal Conference Hall",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 114,
+    "floorNo": 7,
+    "capacity": 18,
+    "pricePerSlot": 850,
+    "isDeleted": false,
+    "amenities": ["Projector", "Wi-Fi", "Coffee Machine"]
+  },
+  {
+    "name": "Emerald Lounge Suite",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 115,
+    "floorNo": 8,
+    "capacity": 12,
+    "pricePerSlot": 600,
+    "isDeleted": false,
+    "amenities": ["Whiteboard", "Wi-Fi", "TV Screen"]
+  },
+  {
+    "name": "Lakeside Business Room",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 116,
+    "floorNo": 8,
+    "capacity": 8,
+    "pricePerSlot": 500,
+    "isDeleted": false,
+    "amenities": ["Wi-Fi", "Air Conditioning", "Mini Bar"]
+  },
+  {
+    "name": "Grand View Conference",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 117,
+    "floorNo": 9,
+    "capacity": 10,
+    "pricePerSlot": 600,
+    "isDeleted": false,
+    "amenities": ["Projector", "Whiteboard", "Wi-Fi"]
+  },
+  {
+    "name": "Harmony Meeting Suite",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 118,
+    "floorNo": 9,
+    "capacity": 6,
+    "pricePerSlot": 350,
+    "isDeleted": false,
+    "amenities": ["Whiteboard", "Wi-Fi", "Air Conditioning"]
+  },
+  {
+    "name": "Sunrise Conference Hall",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 119,
+    "floorNo": 10,
+    "capacity": 20,
+    "pricePerSlot": 1000,
+    "isDeleted": false,
+    "amenities": ["Projector", "Wi-Fi", "Coffee Machine"]
+  },
+  {
+    "name": "Cloud Nine Lounge",
+    "image": "https://res.cloudinary.com/arif5577/image/upload/v1727501822/keyzone/fhelrgghbu66dff2yhub.png",
+    "roomNo": 120,
+    "floorNo": 10,
+    "capacity": 4,
+    "pricePerSlot": 250,
+    "isDeleted": false,
+    "amenities": ["Whiteboard", "Wi-Fi", "Air Conditioning"]
+  }
+]
